@@ -9,12 +9,18 @@ import matplotlib.colors as mplc
 import scipy.io
 import xml.etree.ElementTree as ET  # https://docs.python.org/2/library/xml.etree.elementtree.html
 import glob
+import platform
 import zipfile
 from debug import debug_view 
-try:
-    from hublib.ui import Download
-    hublib_flag = True
-except:
+
+hublib_flag = True
+if platform.system() != 'Windows':
+    try:
+#        print("Trying to import hublib.ui")
+        from hublib.ui import Download
+    except:
+        hublib_flag = False
+else:
     hublib_flag = False
 
 
@@ -177,14 +183,15 @@ class SubstrateTab(object):
                             align_items='stretch',
                             flex_direction='row',
                             display='flex'))
-        if hublib_flag:
+        if (hublib_flag):
             self.download_button = Download('mcds.zip', style='warning', icon='cloud-download', 
-                                            tooltip='Download data', cb=self.download_cb)
+                                                tooltip='Download data', cb=self.download_cb)
             download_row = HBox([self.download_button.w, Label("Download all substrate data (browser must allow pop-ups).")])
 
-#        self.tab = VBox([row1, row2, self.mcds_plot])
+    #        self.tab = VBox([row1, row2, self.mcds_plot])
             self.tab = VBox([row1, row2, self.mcds_plot, download_row])
         else:
+            # self.tab = VBox([row1, row2])
             self.tab = VBox([row1, row2, self.mcds_plot])
 
     #---------------------------------------------------
@@ -319,10 +326,7 @@ class SubstrateTab(object):
 
 #        if not os.path.isfile(fullname):
         if not os.path.isfile(full_fname):
-#            print("File does not exist: ", full_fname)
-#            print("No: ", full_fname)
-            print("Missing output file")  # No:  output00000000_microenvironment0.mat
-
+            print("Once output files are generated, click the slider.")  # No:  output00000000_microenvironment0.mat
             return
 
 #        tree = ET.parse(xml_fname)
@@ -352,6 +356,20 @@ class SubstrateTab(object):
         #     im = ax.imshow(f.reshape(100,100), interpolation='nearest', cmap=cmap, extent=[0,20, 0,20])
         #     ax.grid(False)
 
+        # print("substrates.py: ------- numx, numy = ", self.numx, self.numy )
+        if (self.numx == 0):   # need to parse vals from the config.xml
+            fname = os.path.join(self.output_dir, "config.xml")
+            tree = ET.parse(fname)
+            xml_root = tree.getroot()
+            xmin = float(xml_root.find(".//x_min").text)
+            xmax = float(xml_root.find(".//x_max").text)
+            dx = float(xml_root.find(".//dx").text)
+            ymin = float(xml_root.find(".//y_min").text)
+            ymax = float(xml_root.find(".//y_max").text)
+            dy = float(xml_root.find(".//dy").text)
+            self.numx =  math.ceil( (xmax - xmin) / dx)
+            self.numy =  math.ceil( (ymax - ymin) / dy)
+
         xgrid = M[0, :].reshape(self.numy, self.numx)
         ygrid = M[1, :].reshape(self.numy, self.numx)
 
@@ -374,7 +392,6 @@ class SubstrateTab(object):
         if (contour_ok):
             plt.title(title_str)
             plt.colorbar(my_plot)
-
         axes_min = 0
         axes_max = 2000
         # plt.xlim(axes_min, axes_max)

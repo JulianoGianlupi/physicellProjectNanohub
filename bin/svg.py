@@ -9,11 +9,17 @@ import matplotlib.colors as mplc
 import numpy as np
 import zipfile
 import glob
+import platform
 from debug import debug_view
-try:
-    from hublib.ui import Download
-    hublib_flag = True
-except:
+
+hublib_flag = True
+if platform.system() != 'Windows':
+    try:
+#        print("Trying to import hublib.ui")
+        from hublib.ui import Download
+    except:
+        hublib_flag = False
+else:
     hublib_flag = False
 
 
@@ -86,12 +92,12 @@ class SVGTab(object):
                     width='70%')
         row1 = Box(children=items_auto, layout=box_layout)
 
-        if hublib_flag:
+        if (hublib_flag):
             self.download_button = Download('svg.zip', style='warning', icon='cloud-download', 
-                                        tooltip='You need to allow pop-ups in your browser', cb=self.download_cb)
+                                            tooltip='You need to allow pop-ups in your browser', cb=self.download_cb)
             download_row = HBox([self.download_button.w, Label("Download all cell plots (browser must allow pop-ups).")])
-#        self.tab = VBox([row1, self.svg_plot, self.download_button.w], layout=tab_layout)
-#        self.tab = VBox([row1, self.svg_plot, self.download_button.w])
+    #        self.tab = VBox([row1, self.svg_plot, self.download_button.w], layout=tab_layout)
+    #        self.tab = VBox([row1, self.svg_plot, self.download_button.w])
             self.tab = VBox([row1, self.svg_plot, download_row])
         else:
             self.tab = VBox([row1, self.svg_plot])
@@ -147,7 +153,7 @@ class SVGTab(object):
         # with debug_view:
         #     print("plot_svg:", full_fname) 
         if not os.path.isfile(full_fname):
-            print("Missing output file")   
+            print("Once output files are generated, click the slider.")   
             return
 
         xlist = deque()
