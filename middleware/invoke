@@ -1,4 +1,4 @@
 #!/bin/sh
 
-/usr/bin/invoke_app "$@" -C "start_jupyter -A -T @tool physicellProjectNanohub.ipynb" -t wound_healing \
+/usr/bin/invoke_app "$@" -C "start_jupyter -A -T @tool physicellProjectNanohub.ipynb" -t woundhealingpc \
                          -u anaconda3-5.1
