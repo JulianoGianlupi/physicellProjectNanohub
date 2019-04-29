@@ -43,22 +43,22 @@
     <user_parameters>
         <random_seed type="int" units="dimensionless">0</random_seed>
 		
-		<self_velocity_factor type="double" units="dimless">0.8</self_velocity_factor>
-		<neigh_velocity_factor type="double" units="dimless">0.4</neigh_velocity_factor>
-		<previous_bias_factor type="double" units="dimless">0.2</previous_bias_factor>
-		<noise_factor type="double" units="dimless">0.4</noise_factor>
+		<self_velocity_factor description="multiplier of self-velocity in boids equation" type="double" units="dimless">0.8</self_velocity_factor>
+		<neigh_velocity_factor description="multiplier of neighbor velocity in boids equation" type="double" units="dimless">0.4</neigh_velocity_factor>
+		<previous_bias_factor description="multiplier for cell's previous bias in the boids equation" type="double" units="dimless">0.2</previous_bias_factor>
+		<noise_factor description="random noise component in boids equation" type="double" units="dimless">0.4</noise_factor>
 		
-        <motile_cell_persistence_time type="double" units="min">0.05</motile_cell_persistence_time>
-        <motile_cell_migration_speed type="double" units="um/min">0.5</motile_cell_migration_speed>
+        <motile_cell_persistence_time description="time between direction changes (needs to be the mechanics time step)" type="double" units="min">0.05</motile_cell_persistence_time>
+        <motile_cell_migration_speed description="magnitude of velocity" type="double" units="micrometer/min">0.5</motile_cell_migration_speed>
         
-		<wall_thickness type="int" units="cells">5</wall_thickness>
-        <wound_size type="int" units="% of assay area">33</wound_size>
+		<wall_thickness description="width of boundary" type="int" units="cells">5</wall_thickness>
+        <wound_size description="width of wound along x-axis" type="int" units="% of assay area">33</wound_size>
         
-		<motility_threshold_pressure type="double" units="dimensionless">0.4</motility_threshold_pressure>
-        <division_threshold_pressure type="double" units="dimensionless">0.01</division_threshold_pressure>
+		<motility_threshold_pressure description="pressure below which cells become motile" type="double" units="dimensionless">0.4</motility_threshold_pressure>
+        <division_threshold_pressure description="pressure below which cells divide" type="double" units="dimensionless">0.01</division_threshold_pressure>
 		
-		<relative_adhesion_strength type="double" units="dimless">0.01</relative_adhesion_strength>
-		<relative_repulsion_strength type="double" units="dimless">1.25</relative_repulsion_strength>
+		<relative_adhesion_strength description="regulates cadherin strength for motile cell" type="double" units="dimless">0.01</relative_adhesion_strength>
+		<relative_repulsion_strength description="repulsive force exerted by wall" type="double" units="dimless">1.25</relative_repulsion_strength>
     </user_parameters>
     
 </PhysiCell_settings>

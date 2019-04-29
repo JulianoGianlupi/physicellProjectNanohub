@@ -141,7 +141,7 @@ class UserTab(object):
         units_button5.style.button_color = 'lightgreen'
         units_button6 = Button(description='min', disabled=True, layout=units_button_layout) 
         units_button6.style.button_color = 'tan'
-        units_button7 = Button(description='um/min', disabled=True, layout=units_button_layout) 
+        units_button7 = Button(description='micrometer/min', disabled=True, layout=units_button_layout) 
         units_button7.style.button_color = 'lightgreen'
         units_button8 = Button(description='cells', disabled=True, layout=units_button_layout) 
         units_button8.style.button_color = 'tan'
@@ -158,29 +158,29 @@ class UserTab(object):
 
         desc_button1 = Button(description='', disabled=True, layout=desc_button_layout) 
         desc_button1.style.button_color = 'lightgreen'
-        desc_button2 = Button(description='', disabled=True, layout=desc_button_layout) 
+        desc_button2 = Button(description='multiplier of self-velocity in boids equation', disabled=True, layout=desc_button_layout) 
         desc_button2.style.button_color = 'tan'
-        desc_button3 = Button(description='', disabled=True, layout=desc_button_layout) 
+        desc_button3 = Button(description='multiplier of neighbor velocity in boids equation', disabled=True, layout=desc_button_layout) 
         desc_button3.style.button_color = 'lightgreen'
-        desc_button4 = Button(description='', disabled=True, layout=desc_button_layout) 
+        desc_button4 = Button(description='multiplier for cell's previous bias in the boids equation', disabled=True, layout=desc_button_layout) 
         desc_button4.style.button_color = 'tan'
-        desc_button5 = Button(description='', disabled=True, layout=desc_button_layout) 
+        desc_button5 = Button(description='random noise component in boids equation', disabled=True, layout=desc_button_layout) 
         desc_button5.style.button_color = 'lightgreen'
-        desc_button6 = Button(description='', disabled=True, layout=desc_button_layout) 
+        desc_button6 = Button(description='time between direction changes (needs to be the mechanics time step)', disabled=True, layout=desc_button_layout) 
         desc_button6.style.button_color = 'tan'
-        desc_button7 = Button(description='', disabled=True, layout=desc_button_layout) 
+        desc_button7 = Button(description='magnitude of velocity', disabled=True, layout=desc_button_layout) 
         desc_button7.style.button_color = 'lightgreen'
-        desc_button8 = Button(description='', disabled=True, layout=desc_button_layout) 
+        desc_button8 = Button(description='width of boundary', disabled=True, layout=desc_button_layout) 
         desc_button8.style.button_color = 'tan'
-        desc_button9 = Button(description='', disabled=True, layout=desc_button_layout) 
+        desc_button9 = Button(description='width of wound along x-axis', disabled=True, layout=desc_button_layout) 
         desc_button9.style.button_color = 'lightgreen'
-        desc_button10 = Button(description='', disabled=True, layout=desc_button_layout) 
+        desc_button10 = Button(description='pressure below which cells become motile', disabled=True, layout=desc_button_layout) 
         desc_button10.style.button_color = 'tan'
-        desc_button11 = Button(description='', disabled=True, layout=desc_button_layout) 
+        desc_button11 = Button(description='pressure below which cells divide', disabled=True, layout=desc_button_layout) 
         desc_button11.style.button_color = 'lightgreen'
-        desc_button12 = Button(description='', disabled=True, layout=desc_button_layout) 
+        desc_button12 = Button(description='regulates cadherin strength for motile cell', disabled=True, layout=desc_button_layout) 
         desc_button12.style.button_color = 'tan'
-        desc_button13 = Button(description='', disabled=True, layout=desc_button_layout) 
+        desc_button13 = Button(description='repulsive force exerted by wall', disabled=True, layout=desc_button_layout) 
         desc_button13.style.button_color = 'lightgreen'
 
         row1 = [param_name1, self.random_seed, units_button1, desc_button1] 
