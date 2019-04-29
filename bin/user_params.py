@@ -37,7 +37,7 @@ class UserTab(object):
         param_name2.style.button_color = 'tan'
 
         self.self_velocity_factor = FloatText(
-          value=0.5,
+          value=0.8,
           step=0.1,
           style=style, layout=widget_layout)
 
@@ -53,7 +53,7 @@ class UserTab(object):
         param_name4.style.button_color = 'tan'
 
         self.previous_bias_factor = FloatText(
-          value=0.1,
+          value=0.2,
           step=0.01,
           style=style, layout=widget_layout)
 
@@ -61,8 +61,8 @@ class UserTab(object):
         param_name5.style.button_color = 'lightgreen'
 
         self.noise_factor = FloatText(
-          value=0.1,
-          step=0.01,
+          value=0.4,
+          step=0.1,
           style=style, layout=widget_layout)
 
         param_name6 = Button(description='motile_cell_persistence_time', disabled=True, layout=name_button_layout)
@@ -77,28 +77,52 @@ class UserTab(object):
         param_name7.style.button_color = 'lightgreen'
 
         self.motile_cell_migration_speed = FloatText(
-          value=0.25,
-          step=0.01,
+          value=0.5,
+          step=0.1,
           style=style, layout=widget_layout)
 
-        param_name8 = Button(description='pressure_threshold', disabled=True, layout=name_button_layout)
+        param_name8 = Button(description='wall_thickness', disabled=True, layout=name_button_layout)
         param_name8.style.button_color = 'tan'
 
-        self.pressure_threshold = FloatText(
+        self.wall_thickness = IntText(
+          value=5,
+          step=0.1,
+          style=style, layout=widget_layout)
+
+        param_name9 = Button(description='wound_size', disabled=True, layout=name_button_layout)
+        param_name9.style.button_color = 'lightgreen'
+
+        self.wound_size = IntText(
+          value=33,
+          step=1,
+          style=style, layout=widget_layout)
+
+        param_name10 = Button(description='motility_threshold_pressure', disabled=True, layout=name_button_layout)
+        param_name10.style.button_color = 'tan'
+
+        self.motility_threshold_pressure = FloatText(
           value=0.4,
           step=0.1,
           style=style, layout=widget_layout)
 
-        param_name9 = Button(description='relative_adhesion_strength', disabled=True, layout=name_button_layout)
-        param_name9.style.button_color = 'lightgreen'
+        param_name11 = Button(description='division_threshold_pressure', disabled=True, layout=name_button_layout)
+        param_name11.style.button_color = 'lightgreen'
+
+        self.division_threshold_pressure = FloatText(
+          value=0.01,
+          step=0.001,
+          style=style, layout=widget_layout)
+
+        param_name12 = Button(description='relative_adhesion_strength', disabled=True, layout=name_button_layout)
+        param_name12.style.button_color = 'tan'
 
         self.relative_adhesion_strength = FloatText(
           value=0.01,
           step=0.001,
           style=style, layout=widget_layout)
 
-        param_name10 = Button(description='relative_repulsion_strength', disabled=True, layout=name_button_layout)
-        param_name10.style.button_color = 'tan'
+        param_name13 = Button(description='relative_repulsion_strength', disabled=True, layout=name_button_layout)
+        param_name13.style.button_color = 'lightgreen'
 
         self.relative_repulsion_strength = FloatText(
           value=1.25,
@@ -119,12 +143,18 @@ class UserTab(object):
         units_button6.style.button_color = 'tan'
         units_button7 = Button(description='um/min', disabled=True, layout=units_button_layout) 
         units_button7.style.button_color = 'lightgreen'
-        units_button8 = Button(description='dimless', disabled=True, layout=units_button_layout) 
+        units_button8 = Button(description='cells', disabled=True, layout=units_button_layout) 
         units_button8.style.button_color = 'tan'
-        units_button9 = Button(description='dimless', disabled=True, layout=units_button_layout) 
+        units_button9 = Button(description='% of assay area', disabled=True, layout=units_button_layout) 
         units_button9.style.button_color = 'lightgreen'
-        units_button10 = Button(description='dimless', disabled=True, layout=units_button_layout) 
+        units_button10 = Button(description='', disabled=True, layout=units_button_layout) 
         units_button10.style.button_color = 'tan'
+        units_button11 = Button(description='', disabled=True, layout=units_button_layout) 
+        units_button11.style.button_color = 'lightgreen'
+        units_button12 = Button(description='dimless', disabled=True, layout=units_button_layout) 
+        units_button12.style.button_color = 'tan'
+        units_button13 = Button(description='dimless', disabled=True, layout=units_button_layout) 
+        units_button13.style.button_color = 'lightgreen'
 
         desc_button1 = Button(description='', disabled=True, layout=desc_button_layout) 
         desc_button1.style.button_color = 'lightgreen'
@@ -146,6 +176,12 @@ class UserTab(object):
         desc_button9.style.button_color = 'lightgreen'
         desc_button10 = Button(description='', disabled=True, layout=desc_button_layout) 
         desc_button10.style.button_color = 'tan'
+        desc_button11 = Button(description='', disabled=True, layout=desc_button_layout) 
+        desc_button11.style.button_color = 'lightgreen'
+        desc_button12 = Button(description='', disabled=True, layout=desc_button_layout) 
+        desc_button12.style.button_color = 'tan'
+        desc_button13 = Button(description='', disabled=True, layout=desc_button_layout) 
+        desc_button13.style.button_color = 'lightgreen'
 
         row1 = [param_name1, self.random_seed, units_button1, desc_button1] 
         row2 = [param_name2, self.self_velocity_factor, units_button2, desc_button2] 
@@ -154,9 +190,12 @@ class UserTab(object):
         row5 = [param_name5, self.noise_factor, units_button5, desc_button5] 
         row6 = [param_name6, self.motile_cell_persistence_time, units_button6, desc_button6] 
         row7 = [param_name7, self.motile_cell_migration_speed, units_button7, desc_button7] 
-        row8 = [param_name8, self.pressure_threshold, units_button8, desc_button8] 
-        row9 = [param_name9, self.relative_adhesion_strength, units_button9, desc_button9] 
-        row10 = [param_name10, self.relative_repulsion_strength, units_button10, desc_button10] 
+        row8 = [param_name8, self.wall_thickness, units_button8, desc_button8] 
+        row9 = [param_name9, self.wound_size, units_button9, desc_button9] 
+        row10 = [param_name10, self.motility_threshold_pressure, units_button10, desc_button10] 
+        row11 = [param_name11, self.division_threshold_pressure, units_button11, desc_button11] 
+        row12 = [param_name12, self.relative_adhesion_strength, units_button12, desc_button12] 
+        row13 = [param_name13, self.relative_repulsion_strength, units_button13, desc_button13] 
 
         box_layout = Layout(display='flex', flex_flow='row', align_items='stretch', width='100%')
         box1 = Box(children=row1, layout=box_layout)
@@ -169,6 +208,9 @@ class UserTab(object):
         box8 = Box(children=row8, layout=box_layout)
         box9 = Box(children=row9, layout=box_layout)
         box10 = Box(children=row10, layout=box_layout)
+        box11 = Box(children=row11, layout=box_layout)
+        box12 = Box(children=row12, layout=box_layout)
+        box13 = Box(children=row13, layout=box_layout)
 
         self.tab = VBox([
           box1,
@@ -181,6 +223,9 @@ class UserTab(object):
           box8,
           box9,
           box10,
+          box11,
+          box12,
+          box13,
         ])
 
     # Populate the GUI widgets with values from the XML
@@ -193,7 +238,10 @@ class UserTab(object):
         self.noise_factor.value = float(uep.find('.//noise_factor').text)
         self.motile_cell_persistence_time.value = float(uep.find('.//motile_cell_persistence_time').text)
         self.motile_cell_migration_speed.value = float(uep.find('.//motile_cell_migration_speed').text)
-        self.pressure_threshold.value = float(uep.find('.//pressure_threshold').text)
+        self.wall_thickness.value = int(uep.find('.//wall_thickness').text)
+        self.wound_size.value = int(uep.find('.//wound_size').text)
+        self.motility_threshold_pressure.value = float(uep.find('.//motility_threshold_pressure').text)
+        self.division_threshold_pressure.value = float(uep.find('.//division_threshold_pressure').text)
         self.relative_adhesion_strength.value = float(uep.find('.//relative_adhesion_strength').text)
         self.relative_repulsion_strength.value = float(uep.find('.//relative_repulsion_strength').text)
 
@@ -208,6 +256,9 @@ class UserTab(object):
         uep.find('.//noise_factor').text = str(self.noise_factor.value)
         uep.find('.//motile_cell_persistence_time').text = str(self.motile_cell_persistence_time.value)
         uep.find('.//motile_cell_migration_speed').text = str(self.motile_cell_migration_speed.value)
-        uep.find('.//pressure_threshold').text = str(self.pressure_threshold.value)
+        uep.find('.//wall_thickness').text = str(self.wall_thickness.value)
+        uep.find('.//wound_size').text = str(self.wound_size.value)
+        uep.find('.//motility_threshold_pressure').text = str(self.motility_threshold_pressure.value)
+        uep.find('.//division_threshold_pressure').text = str(self.division_threshold_pressure.value)
         uep.find('.//relative_adhesion_strength').text = str(self.relative_adhesion_strength.value)
         uep.find('.//relative_repulsion_strength').text = str(self.relative_repulsion_strength.value)
