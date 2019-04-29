@@ -168,6 +168,7 @@ void create_cell_types( void )
     wall_cell.name = "wall";
     cell_type_id +=1;
     wall_cell.phenotype.motility.is_motile = false;
+	//wall_cell->is_movable = false;
     wall_cell.phenotype.cycle.data.transition_rate( 0 , 0 ) = 0.0; // turn division off
     wall_cell.phenotype.death.rates[apoptosis_model_index] = 0.0;  // set apoptosis rate to zero
     wall_cell.phenotype.mechanics.cell_cell_repulsion_strength *= relative_repulsion_strength;
@@ -241,11 +242,13 @@ void setup_tissue( void )
             {
                 pC = create_cell( wall_cell );
                 pC->assign_position( position );
+				pC->is_movable = false;
             }
             else if( position[0] < x_min + wall_width*s || position[0] > x_max - wall_width*s )
             {
                 pC = create_cell( wall_cell );
                 pC->assign_position( position );
+				pC->is_movable = false;
             }
             else if( position[0] < init_wound || position[0] > end_wound)// && or
             {
